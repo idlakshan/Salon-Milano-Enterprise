@@ -1,0 +1,49 @@
+2026-07-17T12:01:32.021+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : Starting UserServiceApplication using Java 21.0.9 with PID 5256 (D:\Projects\salon-milano-enterprise\salon-backend-services\user-service\target\classes started by idlak in D:\Projects\salon-milano-enterprise\salon-backend-services)
+2026-07-17T12:01:32.021+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-07-17T12:01:32.140+05:30  INFO 5256 --- [user-service] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-07-17T12:01:32.141+05:30  INFO 5256 --- [user-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-17T12:01:32.142+05:30  INFO 5256 --- [user-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-17T12:01:32.155+05:30  INFO 5256 --- [user-service] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 132 ms
+2026-07-17T12:01:32.208+05:30  INFO 5256 --- [user-service] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/api/v1'
+2026-07-17T12:01:32.210+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : Started UserServiceApplication in 0.247 seconds (process running for 1747.546)
+2026-07-17T12:01:32.210+05:30  INFO 5256 --- [user-service] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-17T12:07:35.691+05:30  INFO 5256 --- [user-service] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-17T12:07:35.713+05:30  INFO 5256 --- [user-service] [Thread-49] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-17T12:07:35.721+05:30  INFO 5256 --- [user-service] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-07-17T12:07:35.885+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : Starting UserServiceApplication using Java 21.0.9 with PID 5256 (D:\Projects\salon-milano-enterprise\salon-backend-services\user-service\target\classes started by idlak in D:\Projects\salon-milano-enterprise\salon-backend-services)
+2026-07-17T12:07:35.885+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-07-17T12:07:36.034+05:30  INFO 5256 --- [user-service] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-07-17T12:07:36.035+05:30  INFO 5256 --- [user-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-17T12:07:36.035+05:30  INFO 5256 --- [user-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-17T12:07:36.050+05:30  INFO 5256 --- [user-service] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 164 ms
+2026-07-17T12:07:36.119+05:30  INFO 5256 --- [user-service] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/api/v1'
+2026-07-17T12:07:36.120+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : Started UserServiceApplication in 0.264 seconds (process running for 2111.457)
+2026-07-17T12:07:36.121+05:30  INFO 5256 --- [user-service] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-17T12:08:11.014+05:30  INFO 5256 --- [user-service] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-17T12:08:11.015+05:30  INFO 5256 --- [user-service] [Thread-53] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-17T12:08:11.021+05:30  INFO 5256 --- [user-service] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-07-17T12:08:11.073+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : Starting UserServiceApplication using Java 21.0.9 with PID 5256 (D:\Projects\salon-milano-enterprise\salon-backend-services\user-service\target\classes started by idlak in D:\Projects\salon-milano-enterprise\salon-backend-services)
+2026-07-17T12:08:11.073+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-07-17T12:08:11.169+05:30  INFO 5256 --- [user-service] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-07-17T12:08:11.170+05:30  INFO 5256 --- [user-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-17T12:08:11.170+05:30  INFO 5256 --- [user-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-17T12:08:11.180+05:30  INFO 5256 --- [user-service] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 106 ms
+2026-07-17T12:08:11.218+05:30  INFO 5256 --- [user-service] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/api/v1'
+2026-07-17T12:08:11.223+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : Started UserServiceApplication in 0.168 seconds (process running for 2146.559)
+2026-07-17T12:08:11.224+05:30  INFO 5256 --- [user-service] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-17T12:08:41.014+05:30  INFO 5256 --- [user-service] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-17T12:08:41.016+05:30  INFO 5256 --- [user-service] [Thread-57] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-17T12:08:41.021+05:30  INFO 5256 --- [user-service] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-07-17T12:08:41.085+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : Starting UserServiceApplication using Java 21.0.9 with PID 5256 (D:\Projects\salon-milano-enterprise\salon-backend-services\user-service\target\classes started by idlak in D:\Projects\salon-milano-enterprise\salon-backend-services)
+2026-07-17T12:08:41.086+05:30 DEBUG 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-17T12:08:41.086+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-07-17T12:08:41.205+05:30  INFO 5256 --- [user-service] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-07-17T12:08:41.205+05:30  INFO 5256 --- [user-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-17T12:08:41.206+05:30  INFO 5256 --- [user-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-17T12:08:41.221+05:30  INFO 5256 --- [user-service] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 133 ms
+2026-07-17T12:08:41.288+05:30  INFO 5256 --- [user-service] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/api/v1'
+2026-07-17T12:08:41.614+05:30  INFO 5256 --- [user-service] [restartedMain] com.milano.UserServiceApplication        : Started UserServiceApplication in 0.552 seconds (process running for 2176.95)
+2026-07-17T12:08:41.615+05:30  INFO 5256 --- [user-service] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-17T12:09:59.799+05:30  INFO 5256 --- [user-service] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-17T12:09:59.801+05:30  INFO 5256 --- [user-service] [Thread-61] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-17T12:09:59.806+05:30  INFO 5256 --- [user-service] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
