@@ -1,2 +1,2 @@
-\# Salon Milano - Multi-Branch Enterprise System
+# Salon Milano - Multi-Branch Enterprise System
 
