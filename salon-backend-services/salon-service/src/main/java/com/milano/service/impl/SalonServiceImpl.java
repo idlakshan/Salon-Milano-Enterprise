@@ -57,7 +57,7 @@ public class SalonServiceImpl implements SalonService {
     public SalonResponseDTO getSalonByOwnerId(UUID ownerId) {
 
         Salon salon = salonRepo.findSalonByOwnerId(ownerId);
-        if(salon==null){
+        if (salon == null) {
             throw new EntryNotFoundException("Salon not found");
         }
         return salonMapper.toSalonResponseDTO(salon);
@@ -74,7 +74,10 @@ public class SalonServiceImpl implements SalonService {
     public PagedResponseDTO<SalonResponseDTO> getAllSalons(String searchText, int page, int size) {
         searchText = "%" + searchText + "%";
 
-        return PagedResponseDTO.<SalonResponseDTO>builder().dataCount(salonRepo.countAllSalons(searchText)).dataList(salonRepo.findAllSalons(searchText, PageRequest.of(page, size)).stream().map(salonMapper::toSalonResponseDTO).toList()).build();
+        return PagedResponseDTO.<SalonResponseDTO>builder()
+                .dataCount(salonRepo.countAllSalons(searchText))
+                .dataList(salonRepo.findAllSalons(searchText, PageRequest.of(page, size))
+                        .stream().map(salonMapper::toSalonResponseDTO).toList()).build();
 
     }
 
@@ -82,6 +85,9 @@ public class SalonServiceImpl implements SalonService {
     public PagedResponseDTO<SalonResponseDTO> searchSalonByCity(String searchText, int page, int size) {
         searchText = "%" + searchText + "%";
 
-        return PagedResponseDTO.<SalonResponseDTO>builder().dataCount(salonRepo.countAllSalons(searchText)).dataList(salonRepo.searchSalons(searchText, PageRequest.of(page, size)).stream().map(salonMapper::toSalonResponseDTO).toList()).build();
+        return PagedResponseDTO.<SalonResponseDTO>builder()
+                .dataCount(salonRepo.countAllSalons(searchText))
+                .dataList(salonRepo.searchSalons(searchText, PageRequest.of(page, size))
+                        .stream().map(salonMapper::toSalonResponseDTO).toList()).build();
     }
 }

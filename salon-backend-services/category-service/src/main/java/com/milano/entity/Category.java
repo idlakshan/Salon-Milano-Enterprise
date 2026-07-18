@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.util.UUID;
 
-
 @Getter
 @Setter
 @ToString
@@ -25,5 +24,6 @@ public class Category {
 
     private String image;
 
-    private Long salonId;
+    @Column(nullable = false)
+    private UUID salonId;
 }
