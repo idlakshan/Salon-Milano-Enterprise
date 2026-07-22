@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/service-offering/salon-owner")
+@RequestMapping("api/v1/service-offering/salon-owner")
 @RequiredArgsConstructor
 public class SalonServiceOfferingController {
 
