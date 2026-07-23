@@ -297,6 +297,7 @@ services:
     environment:
       SPRING_APPLICATION_NAME: payment-service
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8761/eureka/
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
       EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
       SPRING_DATASOURCE_URL: jdbc:mysql://paymentdb:3306/paymentdb
       SPRING_DATASOURCE_USERNAME: root
