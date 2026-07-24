@@ -1,6 +1,7 @@
 package com.milano.service;
 
 import com.milano.dto.CredentialDTO;
+import com.milano.dto.KeycloakUserInfoDTO;
 import com.milano.dto.request.SignupRequestDTO;
 import com.milano.dto.request.UserRegistrationRequestDTO;
 import com.milano.dto.response.KeycloakRoleResponseDTO;
@@ -83,7 +84,7 @@ public class KeycloakService {
         body.add("grant_type", grantType);
         body.add("client_id", CLIENT_ID);
         body.add("client_secret", CLIENT_SECRET);
-
+        body.add("scope", "openid profile email");
 
         if ("refresh_token".equalsIgnoreCase(grantType)) {
             body.add("refresh_token", refreshToken);
@@ -173,7 +174,32 @@ public class KeycloakService {
         if (response.getStatusCode() == HttpStatus.NO_CONTENT || response.getStatusCode() == HttpStatus.OK) {
             System.out.println("Role assigned successfully to user ID: " + userId);
         } else {
-            throw new RuntimeException("Failed to assign role to user. Status: " + response.getStatusCode());
+            throw new KeycloakException("Failed to assign role to user. Status: " + response.getStatusCode());
+        }
+    }
+
+    public KeycloakUserInfoDTO fetchUserProfileByJwt(String token) {
+
+        String url = KEYCLOAK_BASE_URL + "/realms/" + REALM_NAME + "/protocol/openid-connect/userinfo";
+
+        String cleanToken = token.startsWith("Bearer ") ? token.substring(7) : token;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(cleanToken);
+
+        HttpEntity<Void> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<KeycloakUserInfoDTO> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                entity,
+                KeycloakUserInfoDTO.class
+        );
+
+        if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+            return response.getBody();
+        } else {
+            throw new KeycloakException("Failed to fetch user profile from Keycloak");
         }
     }
 }

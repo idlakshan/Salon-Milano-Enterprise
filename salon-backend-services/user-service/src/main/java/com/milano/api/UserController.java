@@ -27,6 +27,19 @@ public class UserController {
                 .body(StandardResponseDTO.builder().code(201).message("User Saved Successfully").data(null).build());
     }
 
+    @GetMapping("/profile")
+    public ResponseEntity<StandardResponseDTO> getUserProfile(@RequestHeader("Authorization") String jwt) {
+
+        UserResponseDTO userFromJwt = userService.getUserFromJwt(jwt);
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(StandardResponseDTO.builder()
+                        .code(HttpStatus.OK.value())
+                        .message("User profile retrieved successfully")
+                        .data(userFromJwt)
+                        .build());
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<StandardResponseDTO> updateUser(@RequestBody @Valid UserRequestDTO userRequestDTO,
                                                           @PathVariable UUID id) {

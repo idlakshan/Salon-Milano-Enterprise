@@ -13,6 +13,7 @@ public interface UserService {
     void deleteUser(UUID id);
     UserResponseDTO findUserById(UUID id);
     PagedResponseDTO<UserResponseDTO> findUsers(String searchText, int page, int size);
+    UserResponseDTO getUserFromJwt(String jwt);
 
 
 }
