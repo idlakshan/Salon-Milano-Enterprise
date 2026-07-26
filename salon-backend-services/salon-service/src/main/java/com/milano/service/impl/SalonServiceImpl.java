@@ -1,5 +1,7 @@
 package com.milano.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.milano.dto.UserDTO;
 import com.milano.dto.request.SalonRequestDTO;
 import com.milano.dto.request.UserRequestDTO;
 import com.milano.dto.response.PagedResponseDTO;
@@ -9,9 +11,12 @@ import com.milano.exception.EntryNotFoundException;
 import com.milano.exception.UnauthorizedException;
 import com.milano.repo.SalonRepo;
 import com.milano.service.SalonService;
+import com.milano.service.client.UserFeignClient;
 import com.milano.util.SalonMapper;
+import com.milano.util.StandardResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -22,20 +27,42 @@ public class SalonServiceImpl implements SalonService {
 
     private final SalonRepo salonRepo;
     private final SalonMapper salonMapper;
+    private final UserFeignClient userFeignClient;
+    private final ObjectMapper objectMapper;
 
     @Override
-    public void createSalon(SalonRequestDTO salonRequestDTO, UserRequestDTO userRequestDTO) {
-        salonRepo.save(salonMapper.toSalon(salonRequestDTO, userRequestDTO));
+    public void createSalon(SalonRequestDTO salonRequestDTO, String jwt) {
+
+        ResponseEntity<StandardResponseDTO> userProfileResponse = userFeignClient.getUserProfile(jwt);
+
+        UserDTO userDTO = objectMapper.convertValue(
+                userProfileResponse.getBody().getData(),
+                UserDTO.class
+        );
+
+        if (userDTO == null || userDTO.getId() == null) {
+            throw new UnauthorizedException("User details could not be retrieved from token.");
+        }
+
+        Salon salon = salonMapper.toSalon(salonRequestDTO, userDTO);
+        salonRepo.save(salon);
     }
 
     @Override
-    public void updateSalon(SalonRequestDTO salonRequestDTO, UserRequestDTO userRequestDTO, UUID id) {
-        Salon salon = salonRepo.findById(id).orElseThrow(() ->
-                new EntryNotFoundException("Salon not found by provided id"));
+    public void updateSalon(SalonRequestDTO salonRequestDTO, UUID id, String jwt) {
 
-        if (!salonRequestDTO.getOwnerId().equals(userRequestDTO.getId())) {
+        ResponseEntity<StandardResponseDTO> userProfileResponse = userFeignClient.getUserProfile(jwt);
+        UserDTO userDTO = objectMapper.convertValue(
+                userProfileResponse.getBody().getData(),
+                UserDTO.class
+        );
+
+        if (!salonRequestDTO.getOwnerId().equals(userDTO.getId())) {
             throw new UnauthorizedException("You are not authorized to update this salon.");
         }
+
+        Salon salon = salonRepo.findById(id).orElseThrow(() ->
+                new EntryNotFoundException("Salon not found by provided id"));
 
         salon.setName(salonRequestDTO.getName());
         salon.setAddress(salonRequestDTO.getAddress());
@@ -54,9 +81,19 @@ public class SalonServiceImpl implements SalonService {
     }
 
     @Override
-    public SalonResponseDTO getSalonByOwnerId(UUID ownerId) {
+    public SalonResponseDTO getSalonByOwnerId(String jwt) {
 
-        Salon salon = salonRepo.findSalonByOwnerId(ownerId);
+        ResponseEntity<StandardResponseDTO> userProfileResponse = userFeignClient.getUserProfile(jwt);
+        UserDTO userDTO = objectMapper.convertValue(
+                userProfileResponse.getBody().getData(),
+                UserDTO.class
+        );
+
+        if (userDTO == null || userDTO.getId() == null) {
+            throw new UnauthorizedException("User details could not be retrieved from token.");
+        }
+
+        Salon salon = salonRepo.findSalonByOwnerId(userDTO.getId());
         if (salon == null) {
             throw new EntryNotFoundException("Salon not found");
         }

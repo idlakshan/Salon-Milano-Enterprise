@@ -1,5 +1,6 @@
 package com.milano.util;
 
+import com.milano.dto.UserDTO;
 import com.milano.dto.request.SalonRequestDTO;
 import com.milano.dto.request.UserRequestDTO;
 import com.milano.dto.response.SalonResponseDTO;
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SalonMapper {
 
-    public Salon toSalon(SalonRequestDTO salonRequestDTO, UserRequestDTO userRequestDTO) {
-        if (salonRequestDTO == null || userRequestDTO == null) throw new ValidationException("DTO Not Found");
+    public Salon toSalon(SalonRequestDTO salonRequestDTO, UserDTO userDTO) {
+        if (salonRequestDTO == null || userDTO == null) throw new ValidationException("DTO Not Found");
 
         return Salon.builder().name(salonRequestDTO.getName())
                 .images(salonRequestDTO.getImages())
@@ -22,7 +23,7 @@ public class SalonMapper {
                 .isOpen(true)
                 .homeService(true)
                 .active(true)
-                .ownerId(userRequestDTO.getId())
+                .ownerId(userDTO.getId())
                 .openTime(salonRequestDTO.getOpenTime())
                 .closeTime(salonRequestDTO.getCloseTime()).build();
     }

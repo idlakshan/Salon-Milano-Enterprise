@@ -5,6 +5,7 @@ import com.milano.dto.request.UserRequestDTO;
 import com.milano.dto.response.PagedResponseDTO;
 import com.milano.dto.response.SalonResponseDTO;
 import com.milano.service.SalonService;
+import com.milano.service.client.UserFeignClient;
 import com.milano.util.StandardResponseDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,11 +23,14 @@ public class SalonController {
     private final SalonService salonService;
 
     @PostMapping
-    public ResponseEntity<StandardResponseDTO> createSalon(@RequestBody @Valid SalonRequestDTO salonRequestDTO) {
+    public ResponseEntity<StandardResponseDTO> createSalon(
+            @RequestBody @Valid SalonRequestDTO salonRequestDTO,
+            @RequestHeader("Authorization") String jwt) {
 
-        UserRequestDTO userRequestDTO = new UserRequestDTO();
-        userRequestDTO.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
-        salonService.createSalon(salonRequestDTO, userRequestDTO);
+//        UserRequestDTO userRequestDTO = new UserRequestDTO();
+//        userRequestDTO.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
+
+        salonService.createSalon(salonRequestDTO, jwt);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -39,11 +43,12 @@ public class SalonController {
 
     @PatchMapping("/{salonId}")
     public ResponseEntity<StandardResponseDTO> updateSalon(@PathVariable UUID salonId,
-                                                           @RequestBody @Valid SalonRequestDTO salonRequestDTO) {
+                                                           @RequestBody @Valid SalonRequestDTO salonRequestDTO,
+                                                           @RequestHeader("Authorization") String jwt) {
 
-        UserRequestDTO userRequestDTO = new UserRequestDTO();
-        userRequestDTO.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
-        salonService.updateSalon(salonRequestDTO, userRequestDTO, salonId);
+//        UserRequestDTO userRequestDTO = new UserRequestDTO();
+//        userRequestDTO.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
+        salonService.updateSalon(salonRequestDTO, salonId, jwt);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -96,10 +101,10 @@ public class SalonController {
                         .build());
     }
 
-    @GetMapping("/owner/{ownerId}")
+    @GetMapping("/owner")
     public ResponseEntity<StandardResponseDTO> findSalonByOwnerId(
-            @PathVariable UUID ownerId) {
-        SalonResponseDTO salon = salonService.getSalonByOwnerId(ownerId);
+            @RequestHeader("Authorization") String jwt) {
+        SalonResponseDTO salon = salonService.getSalonByOwnerId(jwt);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(StandardResponseDTO.builder()
