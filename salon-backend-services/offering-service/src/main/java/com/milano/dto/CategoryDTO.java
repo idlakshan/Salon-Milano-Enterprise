@@ -1,7 +1,5 @@
-package com.milano.dto.request;
+package com.milano.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.UUID;
@@ -11,7 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CategoryRequestDTO {
+public class CategoryDTO {
     private UUID id;
     private String name;
     private String image;

@@ -1,8 +1,8 @@
 package com.milano.util;
 
-import com.milano.dto.request.CategoryRequestDTO;
+import com.milano.dto.CategoryDTO;
 import com.milano.dto.request.OfferingRequestDTO;
-import com.milano.dto.request.SalonRequestDTO;
+import com.milano.dto.SalonDTO;
 import com.milano.dto.response.OfferingResponseDTO;
 import com.milano.entity.Offering;
 import com.milano.exception.ValidationException;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class OfferingMapper {
 
-    public Offering toOffering(SalonRequestDTO salonRequestDTO,
+    public Offering toOffering(SalonDTO salonRequestDTO,
                                OfferingRequestDTO offeringRequestDTO,
-                               CategoryRequestDTO categoryRequestDTO
+                               CategoryDTO categoryRequestDTO
     ) {
         if (salonRequestDTO == null || offeringRequestDTO == null || categoryRequestDTO == null) {
             throw new ValidationException("Required DTO is missing");

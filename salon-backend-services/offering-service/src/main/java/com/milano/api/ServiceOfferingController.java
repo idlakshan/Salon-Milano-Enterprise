@@ -1,6 +1,5 @@
 package com.milano.api;
 
-import com.milano.dto.request.OfferingRequestDTO;
 import com.milano.dto.response.OfferingResponseDTO;
 import com.milano.service.OfferingService;
 import com.milano.util.StandardResponseDTO;

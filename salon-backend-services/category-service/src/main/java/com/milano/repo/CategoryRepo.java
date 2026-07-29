@@ -20,4 +20,7 @@ public interface CategoryRepo extends JpaRepository<Category, UUID> {
     @Query(value = "SELECT COUNT(*) FROM salons WHERE name LIKE ?1",
             nativeQuery = true)
     long countAllCategories(String searchText);
+
+    Category findByIdAndSalonIdIs(UUID id, UUID salonId);
+
 }

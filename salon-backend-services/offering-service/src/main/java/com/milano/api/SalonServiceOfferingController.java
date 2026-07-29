@@ -1,10 +1,9 @@
 package com.milano.api;
 
-import com.milano.dto.request.CategoryRequestDTO;
 import com.milano.dto.request.OfferingRequestDTO;
-import com.milano.dto.request.SalonRequestDTO;
 import com.milano.service.OfferingService;
 import com.milano.util.StandardResponseDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +19,20 @@ public class SalonServiceOfferingController {
     private final OfferingService offeringService;
 
     @PostMapping
-    public ResponseEntity<StandardResponseDTO> createService(@RequestBody OfferingRequestDTO offeringRequestDTO) {
+    public ResponseEntity<StandardResponseDTO> createService(
+            @RequestBody @Valid OfferingRequestDTO offeringRequestDTO,
+            @RequestHeader("Authorization") String jwt) {
 
-        SalonRequestDTO salonRequestDTO = new SalonRequestDTO();
-        salonRequestDTO.setId(
-                UUID.fromString("550e8400-e29b-41d4-a716-446655440000")
-        );
+//        SalonRequestDTO salonRequestDTO = new SalonRequestDTO();
+//        salonRequestDTO.setId(
+//                UUID.fromString("550e8400-e29b-41d4-a716-446655440000")
+//        );
+        offeringService.createServiceOffering(jwt, offeringRequestDTO);
 
-        CategoryRequestDTO categoryRequestDTO = new CategoryRequestDTO();
-        categoryRequestDTO.setId(offeringRequestDTO.getCategory());
-
-        offeringService.createServiceOffering(salonRequestDTO, offeringRequestDTO, categoryRequestDTO);
+//        CategoryDTO categoryRequestDTO = new CategoryDTO();
+//        categoryRequestDTO.setId(offeringRequestDTO.getCategory());
+//
+//        offeringService.createServiceOffering(jwt, offeringRequestDTO, categoryRequestDTO);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)

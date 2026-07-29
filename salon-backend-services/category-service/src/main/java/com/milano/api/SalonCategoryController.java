@@ -1,7 +1,7 @@
 package com.milano.api;
 
 import com.milano.dto.request.CategoryRequestDTO;
-import com.milano.dto.request.SalonRequestDTO;
+import com.milano.dto.response.CategoryResponseDTO;
 import com.milano.service.CategoryService;
 import com.milano.util.StandardResponseDTO;
 import jakarta.validation.Valid;
@@ -21,12 +21,13 @@ public class SalonCategoryController {
 
     @PostMapping
     public ResponseEntity<StandardResponseDTO> createCategory(
-            @RequestBody @Valid CategoryRequestDTO categoryRequestDTO) {
+            @RequestBody @Valid CategoryRequestDTO categoryRequestDTO,
+            @RequestHeader("Authorization") String jwt) {
 
-        SalonRequestDTO salonRequestDTO = new SalonRequestDTO();
-        salonRequestDTO.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
+//        SalonDTO salonRequestDTO = new SalonDTO();
+//        salonRequestDTO.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
 
-        categoryService.createCategory(categoryRequestDTO, salonRequestDTO);
+        categoryService.createCategory(categoryRequestDTO, jwt);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -39,12 +40,13 @@ public class SalonCategoryController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<StandardResponseDTO> deleteCategory(@PathVariable UUID id) {
+    public ResponseEntity<StandardResponseDTO> deleteCategory(@PathVariable UUID id,
+                                                              @RequestHeader("Authorization") String jwt) {
 
-        SalonRequestDTO salonRequestDTO = new SalonRequestDTO();
-        salonRequestDTO.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
+//        SalonDTO salonRequestDTO = new SalonDTO();
+//        salonRequestDTO.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
 
-        categoryService.deleteCategory(id,salonRequestDTO.getId());
+        categoryService.deleteCategory(id,jwt);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -52,6 +54,21 @@ public class SalonCategoryController {
                         .code(200)
                         .message("Category deleted successfully")
                         .data(null)
+                        .build());
+    }
+
+    @GetMapping("salon/{salonId}/category/{id}")
+    public ResponseEntity<StandardResponseDTO> getCategoryByIdAndSalon(
+            @PathVariable("id") UUID id,
+            @PathVariable("salonId") UUID salonId) {
+
+        CategoryResponseDTO category = categoryService.findByIdAndSalonId(id,salonId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(StandardResponseDTO.builder()
+                        .code(200)
+                        .message("Category retrieved successfully")
+                        .data(category)
                         .build());
     }
 

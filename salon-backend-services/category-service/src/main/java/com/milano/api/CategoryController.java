@@ -1,7 +1,6 @@
 package com.milano.api;
 
 import com.milano.dto.request.CategoryRequestDTO;
-import com.milano.dto.request.SalonRequestDTO;
 import com.milano.dto.response.CategoryResponseDTO;
 import com.milano.dto.response.PagedResponseDTO;
 import com.milano.service.CategoryService;
