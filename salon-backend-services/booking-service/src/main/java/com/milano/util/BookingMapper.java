@@ -1,8 +1,8 @@
 package com.milano.util;
 
 import com.milano.dto.request.BookingRequestDTO;
-import com.milano.dto.request.SalonRequestDTO;
-import com.milano.dto.request.UserRequestDTO;
+import com.milano.dto.SalonDTO;
+import com.milano.dto.UserDTO;
 import com.milano.dto.response.BookingResponseDTO;
 import com.milano.dto.response.SalonReportResponseDTO;
 import com.milano.entity.BOOKING_STATUS;
@@ -17,8 +17,8 @@ import java.util.UUID;
 @Component
 public class BookingMapper {
 
-    public Booking toBooking(BookingRequestDTO bookingRequestDTO, UserRequestDTO userRequestDTO,
-                             SalonRequestDTO salonRequestDTO,double totalPrice,  Set<UUID> idList,
+    public Booking toBooking(BookingRequestDTO bookingRequestDTO, UserDTO userRequestDTO,
+                             SalonDTO salonRequestDTO, double totalPrice, Set<UUID> idList,
                              LocalDateTime bookingEndTime){
 
 

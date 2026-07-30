@@ -1,8 +1,8 @@
 package com.milano.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.milano.dto.request.BookingRequestDTO;
-import com.milano.dto.request.PaymentOrderRequestDTO;
-import com.milano.dto.request.UserRequestDTO;
+import com.milano.dto.UserDTO;
 import com.milano.dto.response.PaymentOrderResponseDTO;
 import com.milano.dto.response.PaymentResponseDTO;
 import com.milano.entity.PAYMENT_METHOD;
@@ -12,13 +12,16 @@ import com.milano.exception.EntryNotFoundException;
 import com.milano.exception.PaymentException;
 import com.milano.repo.PaymentRepo;
 import com.milano.service.PaymentService;
+import com.milano.service.client.UserFeignClient;
 import com.milano.util.PaymentOrderMapper;
+import com.milano.util.StandardResponseDTO;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -29,18 +32,22 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepo paymentRepo;
     private final PaymentOrderMapper paymentOrderMapper;
+    private final UserFeignClient userFeignClient;
+    private final ObjectMapper objectMapper;
 
     @Value("${stripe.api.secret}")
     private String stripeSecretKey;
 
     @Override
-    public PaymentResponseDTO createOrder(UserRequestDTO userRequestDTO,
+    public PaymentResponseDTO createOrder(String jwt,
                                           BookingRequestDTO bookingRequestDTO,
                                           PAYMENT_METHOD paymentMethod) {
 
-        // 1. මුලින්ම pending order එක සේව් කරනවා (දැන් link id එක null වුණාට කමක් නැහැ)
+        ResponseEntity<StandardResponseDTO> userProfile = userFeignClient.getUserProfile(jwt);
+        UserDTO userDTO = objectMapper.convertValue(userProfile.getBody().getData(), UserDTO.class);
+
         PaymentOrder savedOrder = paymentRepo.save(paymentOrderMapper.toPaymentOrder(
-                userRequestDTO,
+                userDTO,
                 bookingRequestDTO,
                 paymentMethod));
 
@@ -48,9 +55,8 @@ public class PaymentServiceImpl implements PaymentService {
 
         if (paymentMethod == PAYMENT_METHOD.STRIPE) {
             try {
-                // 2. Stripe එකෙන් link එක ජෙනරේට් කරනවා
                 paymentUrl = createStripePaymentLink(
-                        userRequestDTO,
+                        userDTO,
                         savedOrder.getAmount(),
                         savedOrder.getId()
                 );
@@ -87,7 +93,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public String createStripePaymentLink(UserRequestDTO userRequestDTO,
+    public String createStripePaymentLink(UserDTO userRequestDTO,
                                           double amount,
                                           UUID orderId) throws StripeException {
 

@@ -1,7 +1,6 @@
 package com.milano.api;
 
 import com.milano.dto.request.BookingRequestDTO;
-import com.milano.dto.request.UserRequestDTO;
 import com.milano.dto.response.PaymentOrderResponseDTO;
 import com.milano.dto.response.PaymentResponseDTO;
 import com.milano.entity.PAYMENT_METHOD;
@@ -24,15 +23,16 @@ public class PaymentController {
     @PostMapping("/create")
     public ResponseEntity<StandardResponseDTO> createPaymentLink(
             @RequestBody BookingRequestDTO bookingRequestDTO,
-            @RequestParam PAYMENT_METHOD paymentMethod) {
+            @RequestParam PAYMENT_METHOD paymentMethod,
+            @RequestHeader("Authorization") String jwt) {
 
 
-        UserRequestDTO user = new UserRequestDTO();
-        user.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
-        user.setFullName("Dimuthu Lakshan");
-        user.setEmail("dimuthu@gmail.com");
+//        UserRequestDTO user = new UserRequestDTO();
+//        user.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
+//        user.setFullName("Dimuthu Lakshan");
+//        user.setEmail("dimuthu@gmail.com");
 
-        PaymentResponseDTO order = paymentService.createOrder(user, bookingRequestDTO, paymentMethod);
+        PaymentResponseDTO order = paymentService.createOrder(jwt, bookingRequestDTO, paymentMethod);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)

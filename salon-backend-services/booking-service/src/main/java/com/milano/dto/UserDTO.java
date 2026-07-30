@@ -1,4 +1,4 @@
-package com.milano.dto.request;
+package com.milano.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequestDTO {
+public class UserDTO {
 
     private UUID id;
 

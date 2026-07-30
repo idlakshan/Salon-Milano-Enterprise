@@ -1,4 +1,4 @@
-package com.milano.dto.request;
+package com.milano.dto;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CategoryRequestDTO {
+public class CategoryDTO {
     private UUID id;
     private String name;
     private String image;

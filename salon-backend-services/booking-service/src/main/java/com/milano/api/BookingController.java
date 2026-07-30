@@ -1,12 +1,11 @@
 package com.milano.api;
 
 import com.milano.dto.request.BookingRequestDTO;
-import com.milano.dto.request.OfferingRequestDTO;
-import com.milano.dto.request.SalonRequestDTO;
-import com.milano.dto.request.UserRequestDTO;
 import com.milano.dto.response.BookingResponseDTO;
+import com.milano.dto.PaymentDTO;
 import com.milano.dto.response.SalonReportResponseDTO;
 import com.milano.entity.BOOKING_STATUS;
+import com.milano.entity.PAYMENT_METHOD;
 import com.milano.service.BookingService;
 import com.milano.util.StandardResponseDTO;
 import jakarta.validation.Valid;
@@ -16,10 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 
@@ -33,38 +29,18 @@ public class BookingController {
     @PostMapping
     public ResponseEntity<StandardResponseDTO> createBooking(
             @RequestParam UUID salonId,
-            @RequestBody @Valid BookingRequestDTO bookingRequestDTO) {
+            @RequestParam PAYMENT_METHOD paymentMethod,
+            @RequestBody @Valid BookingRequestDTO bookingRequestDTO,
+            @RequestHeader("Authorization") String jwt) {
 
-        // Temporary data (until Keycloak integration)
-        //UUID customerId = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
-        //UUID salonId = UUID.fromString("550e8400-e29b-41d4-a716-446655440001");
-
-        UserRequestDTO userRequestDTO =new UserRequestDTO();
-        userRequestDTO.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
-
-        SalonRequestDTO salonRequestDTO = new SalonRequestDTO();
-        salonRequestDTO.setId(salonId);
-        salonRequestDTO.setOpenTime(LocalTime.now());
-        salonRequestDTO.setCloseTime(LocalTime.now().plusHours(8));
-
-        Set<OfferingRequestDTO> offeringRequestDTOS = new HashSet<>();
-
-        OfferingRequestDTO offeringRequestDTO = new OfferingRequestDTO();
-        offeringRequestDTO.setId(UUID.fromString("8c926c8d-6d0d-4239-80c9-7cbc86054283"));
-        offeringRequestDTO.setPrice(890.00);
-        offeringRequestDTO.setDuration(45);
-        offeringRequestDTO.setName("Hair cut for men");
-
-        offeringRequestDTOS.add(offeringRequestDTO);
-
-        bookingService.createBooking(bookingRequestDTO,userRequestDTO,salonRequestDTO,offeringRequestDTOS);
+        PaymentDTO paymentResponse = bookingService.createBooking(bookingRequestDTO, jwt, salonId, paymentMethod);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(StandardResponseDTO.builder()
                         .code(201)
                         .message("Booking created successfully")
-                        .data(null)
+                        .data(paymentResponse)
                         .build());
     }
 
@@ -86,10 +62,10 @@ public class BookingController {
 
 
     @GetMapping("/customer")
-    public ResponseEntity<StandardResponseDTO> getBookingsByCustomer() {
+    public ResponseEntity<StandardResponseDTO> getBookingsByCustomer(@RequestHeader("Authorization") String jwt) {
 
         List<BookingResponseDTO> bookings =
-                bookingService.getBookingsByCustomer(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
+                bookingService.getBookingsByCustomer(jwt);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -102,10 +78,11 @@ public class BookingController {
 
 
     @GetMapping("/salon")
-    public ResponseEntity<StandardResponseDTO> getBookingsBySalon() {
+    public ResponseEntity<StandardResponseDTO> getBookingsBySalon(
+            @RequestHeader("Authorization") String jwt) {
 
         List<BookingResponseDTO> bookings =
-                bookingService.getBookingsBySalon(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
+                bookingService.getBookingsBySalon(jwt);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -153,10 +130,10 @@ public class BookingController {
 
 
     @GetMapping("/report")
-    public ResponseEntity<StandardResponseDTO> getSalonReport() {
+    public ResponseEntity<StandardResponseDTO> getSalonReport(@RequestHeader("Authorization") String jwt) {
 
         SalonReportResponseDTO report =
-                bookingService.getSalonReport(UUID.fromString("550e8400-e29b-41d4-a716-446655440001"));
+                bookingService.getSalonReport(jwt);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

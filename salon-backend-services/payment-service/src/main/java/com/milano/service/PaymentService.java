@@ -1,8 +1,7 @@
 package com.milano.service;
 
 import com.milano.dto.request.BookingRequestDTO;
-import com.milano.dto.request.PaymentOrderRequestDTO;
-import com.milano.dto.request.UserRequestDTO;
+import com.milano.dto.UserDTO;
 import com.milano.dto.response.PaymentOrderResponseDTO;
 import com.milano.dto.response.PaymentResponseDTO;
 import com.milano.entity.PAYMENT_METHOD;
@@ -12,14 +11,14 @@ import java.util.UUID;
 
 public interface PaymentService {
 
-    PaymentResponseDTO createOrder (UserRequestDTO userRequestDTO, BookingRequestDTO bookingRequestDTO,
+    PaymentResponseDTO createOrder (String jwt, BookingRequestDTO bookingRequestDTO,
                                     PAYMENT_METHOD paymentMethod);
 
     PaymentOrderResponseDTO getPaymentOrderById(UUID id);
 
     PaymentOrderResponseDTO getPaymentOrderByPaymentId(String paymentId);
 
-    String createStripePaymentLink(UserRequestDTO userRequestDTO, double amount, UUID orderId) throws StripeException;
+    String createStripePaymentLink(UserDTO userRequestDTO, double amount, UUID orderId) throws StripeException;
 
      boolean proceedPayment(String paymentId, String paymentLinkId);
 
