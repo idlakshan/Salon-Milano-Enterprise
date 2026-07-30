@@ -1,13 +1,11 @@
 package com.milano.dto.request;
 
-
-import com.milano.dto.BookingDTO;
 import lombok.*;
 
 import java.util.UUID;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -17,5 +15,4 @@ public class NotificationRequestDTO {
     private UUID userId;
     private UUID bookingId;
     private UUID salonId;
-    private BookingDTO booking;
 }

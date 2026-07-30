@@ -6,16 +6,18 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Setter
+
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class NotificationResponseDTO {
+
     private UUID id;
     private String type;
     private String description;
-    private boolean isRead=false;
+    private boolean read;
     private UUID userId;
     private UUID bookingId;
     private UUID salonId;
