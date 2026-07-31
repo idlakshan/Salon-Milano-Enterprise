@@ -1,12 +1,9 @@
 package com.milano.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.milano.dto.OfferingDTO;
-import com.milano.dto.SalonDTO;
-import com.milano.dto.UserDTO;
+import com.milano.dto.*;
 import com.milano.dto.request.BookingRequestDTO;
 import com.milano.dto.response.BookingResponseDTO;
-import com.milano.dto.PaymentDTO;
 import com.milano.dto.response.SalonReportResponseDTO;
 import com.milano.entity.BOOKING_STATUS;
 import com.milano.entity.Booking;
@@ -24,6 +21,7 @@ import com.milano.util.StandardResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -218,5 +216,19 @@ public class BookingServiceImpl implements BookingService {
         return bookingMapper.toSalonReportResponseDTO(salonDTO.getId(), totalEarnings, totalBookings,
                 cancelledBookings.size(),
                 totalRefund);
+    }
+
+    @Override
+    @Transactional
+    public BookingResponseDTO bookingSuccess(PaymentOrderDTO paymentOrderDTO) {
+
+        Booking booking = bookingRepo.findById(paymentOrderDTO.getBookingId())
+                .orElseThrow(() -> new EntryNotFoundException("Booking not found for ID: "
+                        + paymentOrderDTO.getBookingId()));
+
+        booking.setStatus(BOOKING_STATUS.CONFIRM);
+        Booking savedBooking = bookingRepo.save(booking);
+
+        return bookingMapper.toBookingResponseDTO(savedBooking);
     }
 }

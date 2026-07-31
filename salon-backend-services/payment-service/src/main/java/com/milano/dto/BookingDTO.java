@@ -1,4 +1,4 @@
-package com.milano.dto.request;
+package com.milano.dto;
 
 import lombok.*;
 
@@ -11,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BookingRequestDTO {
+public class BookingDTO {
 
     private UUID id;
 

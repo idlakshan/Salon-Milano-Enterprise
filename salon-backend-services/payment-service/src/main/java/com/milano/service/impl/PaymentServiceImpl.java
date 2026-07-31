@@ -1,7 +1,7 @@
 package com.milano.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.milano.dto.request.BookingRequestDTO;
+import com.milano.dto.BookingDTO;
 import com.milano.dto.UserDTO;
 import com.milano.dto.response.PaymentOrderResponseDTO;
 import com.milano.dto.response.PaymentResponseDTO;
@@ -10,6 +10,8 @@ import com.milano.entity.PAYMENT_STATUS;
 import com.milano.entity.PaymentOrder;
 import com.milano.exception.EntryNotFoundException;
 import com.milano.exception.PaymentException;
+import com.milano.messaging.BookingEventProducer;
+import com.milano.messaging.NotificationEventProducer;
 import com.milano.repo.PaymentRepo;
 import com.milano.service.PaymentService;
 import com.milano.service.client.UserFeignClient;
@@ -34,13 +36,16 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentOrderMapper paymentOrderMapper;
     private final UserFeignClient userFeignClient;
     private final ObjectMapper objectMapper;
+    private final BookingEventProducer bookingEventProducer;
+    private final NotificationEventProducer notificationEventProducer;
+
 
     @Value("${stripe.api.secret}")
     private String stripeSecretKey;
 
     @Override
     public PaymentResponseDTO createOrder(String jwt,
-                                          BookingRequestDTO bookingRequestDTO,
+                                          BookingDTO bookingRequestDTO,
                                           PAYMENT_METHOD paymentMethod) {
 
         ResponseEntity<StandardResponseDTO> userProfile = userFeignClient.getUserProfile(jwt);
@@ -144,7 +149,14 @@ public class PaymentServiceImpl implements PaymentService {
 
                 if ("paid".equals(session.getPaymentStatus())) {
                     paymentOrder.setStatus(PAYMENT_STATUS.SUCCESS);
-                    paymentRepo.save(paymentOrder);
+                    PaymentOrder savedOrder = paymentRepo.save(paymentOrder);
+
+                    bookingEventProducer.sendBookingUpdateEvent(
+                            paymentOrderMapper.toPaymentOrderResponseDTO(savedOrder)
+                    );
+                    notificationEventProducer.sentNotificationEvent(savedOrder.getBookingId(),
+                            savedOrder.getUserId(),savedOrder.getSalonId());
+
                     return true;
                 }
             } catch (StripeException e) {

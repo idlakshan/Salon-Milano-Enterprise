@@ -1,6 +1,6 @@
 package com.milano.api;
 
-import com.milano.dto.request.BookingRequestDTO;
+import com.milano.dto.BookingDTO;
 import com.milano.dto.response.PaymentOrderResponseDTO;
 import com.milano.dto.response.PaymentResponseDTO;
 import com.milano.entity.PAYMENT_METHOD;
@@ -22,7 +22,7 @@ public class PaymentController {
 
     @PostMapping("/create")
     public ResponseEntity<StandardResponseDTO> createPaymentLink(
-            @RequestBody BookingRequestDTO bookingRequestDTO,
+            @RequestBody BookingDTO bookingRequestDTO,
             @RequestParam PAYMENT_METHOD paymentMethod,
             @RequestHeader("Authorization") String jwt) {
 

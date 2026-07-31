@@ -1,6 +1,7 @@
 package com.milano.service;
 
 
+import com.milano.dto.PaymentOrderDTO;
 import com.milano.dto.request.BookingRequestDTO;
 import com.milano.dto.response.BookingResponseDTO;
 import com.milano.dto.PaymentDTO;
@@ -22,6 +23,7 @@ public interface BookingService {
     void updateBooking(UUID bookingId, BOOKING_STATUS status);
     List<BookingResponseDTO> getBookingsByDate(LocalDate date, UUID salonId);
     SalonReportResponseDTO getSalonReport(String jwt);
+    BookingResponseDTO bookingSuccess(PaymentOrderDTO paymentOrderDTO);
 
 
 

@@ -14,4 +14,6 @@ public interface BookingRepo extends JpaRepository<Booking, UUID> {
 
     List<Booking> findBySalonId(UUID salonId);
 
+    Booking getBookingById(UUID bookingId);
+
 }

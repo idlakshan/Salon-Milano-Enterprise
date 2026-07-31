@@ -1,6 +1,6 @@
 package com.milano.util;
 
-import com.milano.dto.request.BookingRequestDTO;
+import com.milano.dto.BookingDTO;
 import com.milano.dto.UserDTO;
 import com.milano.dto.response.PaymentOrderResponseDTO;
 import com.milano.entity.PAYMENT_METHOD;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class PaymentOrderMapper {
 
     public PaymentOrder toPaymentOrder(UserDTO userRequestDTO,
-                                       BookingRequestDTO bookingRequestDTO,
+                                       BookingDTO bookingRequestDTO,
                                        PAYMENT_METHOD paymentMethod){
 
         return PaymentOrder.builder()

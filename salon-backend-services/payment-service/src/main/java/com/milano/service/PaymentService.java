@@ -1,6 +1,6 @@
 package com.milano.service;
 
-import com.milano.dto.request.BookingRequestDTO;
+import com.milano.dto.BookingDTO;
 import com.milano.dto.UserDTO;
 import com.milano.dto.response.PaymentOrderResponseDTO;
 import com.milano.dto.response.PaymentResponseDTO;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface PaymentService {
 
-    PaymentResponseDTO createOrder (String jwt, BookingRequestDTO bookingRequestDTO,
+    PaymentResponseDTO createOrder (String jwt, BookingDTO bookingRequestDTO,
                                     PAYMENT_METHOD paymentMethod);
 
     PaymentOrderResponseDTO getPaymentOrderById(UUID id);
