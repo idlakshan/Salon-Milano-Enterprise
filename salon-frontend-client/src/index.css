@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -16,5 +17,6 @@
   --color-brand-silver-dark: #64748B;
   --color-brand-silver-border: #334155;
 
-  --font-sans: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+ --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+
 }

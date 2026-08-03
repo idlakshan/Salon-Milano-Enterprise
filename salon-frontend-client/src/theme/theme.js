@@ -36,3 +36,35 @@ export const darkTheme = createTheme({
     borderRadius: 10,
   },
 });
+
+// Light Theme
+export const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+    primary: {
+      main: milanoColors.red.main,
+      dark: milanoColors.red.hover,
+      light: milanoColors.red.light,
+      contrastText: "#FFFFFF",
+    },
+    secondary: {
+      main: milanoColors.silver.dark,
+    },
+    background: {
+      default: milanoColors.light.bg,
+      paper: milanoColors.light.paper,
+    },
+    text: {
+      primary: milanoColors.light.textPrimary,
+      secondary: milanoColors.light.textSecondary,
+    },
+    divider: milanoColors.light.border,
+  },
+  typography: {
+    fontFamily: ['"Inter"', '"Plus Jakarta Sans"', "sans-serif"].join(","),
+    button: { textTransform: "none", fontWeight: 600 },
+  },
+  shape: {
+    borderRadius: 10,
+  },
+});
