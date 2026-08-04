@@ -1,4 +1,4 @@
-import { BranchCard } from "./BranchCard"; 
+import BranchCard from "./BranchCard";
 
 const BRANCHES = [
   {
@@ -8,7 +8,8 @@ const BRANCHES = [
     hours: "Mon - Sun: 9:00 AM - 8:00 PM",
     rating: 4.9,
     reviewsCount: "240+",
-    image: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=800&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=800&auto=format&fit=crop",
   },
   {
     city: "Kandy City",
@@ -17,7 +18,8 @@ const BRANCHES = [
     hours: "Mon - Sun: 9:00 AM - 7:30 PM",
     rating: 4.8,
     reviewsCount: "180+",
-    image: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=800&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=800&auto=format&fit=crop",
   },
   {
     city: "Galle Fort",
@@ -26,7 +28,8 @@ const BRANCHES = [
     hours: "Tue - Sun: 10:00 AM - 8:00 PM",
     rating: 4.9,
     reviewsCount: "150+",
-    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800&auto=format&fit=crop",
   },
   {
     city: "Negombo Beach",
@@ -35,11 +38,12 @@ const BRANCHES = [
     hours: "Mon - Sun: 9:00 AM - 8:00 PM",
     rating: 4.7,
     reviewsCount: "110+",
-    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
-export const BranchesSection = () => {
+const BranchesSection = () => {
   const gridColsClass =
     BRANCHES.length > 3
       ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
@@ -56,7 +60,8 @@ export const BranchesSection = () => {
             Our Salon Branches
           </h3>
           <p className="mt-3 text-sm text-brand-silver">
-            Locate your nearest Milano Salon and experience luxury grooming near you.
+            Locate your nearest Milano Salon and experience luxury grooming near
+            you.
           </p>
         </div>
 
@@ -69,3 +74,5 @@ export const BranchesSection = () => {
     </section>
   );
 };
+
+export default BranchesSection;

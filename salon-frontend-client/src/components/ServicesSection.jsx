@@ -1,4 +1,4 @@
-import { ServiceFeatureItem } from "./ServiceFeatureItem";
+import ServiceFeatureItem from "./ServiceFeatureItem";
 
 const FEATURES = [
   "Certified Senior Stylists",
@@ -7,7 +7,7 @@ const FEATURES = [
   "Personalized Care & Consultation",
 ];
 
-export const ServicesSection = () => {
+const ServicesSection = () => {
   return (
     <section className="bg-brand-dark-bg py-16 md:py-24 px-6 border-t border-brand-dark-border">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -50,3 +50,5 @@ export const ServicesSection = () => {
     </section>
   );
 };
+
+export default ServicesSection;

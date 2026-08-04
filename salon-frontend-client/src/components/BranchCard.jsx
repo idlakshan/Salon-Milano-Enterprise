@@ -1,6 +1,6 @@
 import { MapPin, Phone, Clock, Star } from "lucide-react";
 
-export const BranchCard = ({ branch }) => {
+const BranchCard = ({ branch }) => {
   const { city, address, phone, hours, rating, reviewsCount, image } = branch;
 
   return (
@@ -58,3 +58,5 @@ export const BranchCard = ({ branch }) => {
     </div>
   );
 };
+
+export default BranchCard;
