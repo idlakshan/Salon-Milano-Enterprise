@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Search, Sparkles } from "lucide-react";
 
-export default function HeroBanner() {
+export const HeroBanner = () => {
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
 
@@ -50,7 +50,7 @@ export default function HeroBanner() {
         </div>
       </div>
 
-      <div className="z-10 max-w-7xl w-full mx-auto px-6 sm:px-12 text-left mb-2 sm:mb-4">
+      <div className="z-10 max-w-[1580px]  w-full mx-auto px-6 sm:px-12 text-left mb-2 sm:mb-4">
         <div className="max-w-xl">
           <div className="fade-in-1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-dark-sidebar/60 border border-brand-dark-border backdrop-blur-md mb-3">
             <Sparkles className="w-3.5 h-3.5 text-brand-red-light" />
@@ -64,7 +64,7 @@ export default function HeroBanner() {
             Feel <em className="text-brand-red-light not-italic">sharper</em>.
           </h1>
 
-          <p className="fade-in-3 mt-3 text-xs sm:text-sm text-brand-silver leading-relaxed max-w-md">
+          <p className="fade-in-3 mt-3 text-xs sm:text-sm md:text-base text-brand-silver leading-relaxed max-w-md">
             Where Expert Care Meets Luxurious Services for a Transformative
             Beauty Experience in Sri Lanka.
           </p>
