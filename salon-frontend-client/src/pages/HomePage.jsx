@@ -3,9 +3,10 @@ import BranchesSection from "../components/BranchesSection";
 import GallerySection from "../components/GallerySection";
 import ServicesSection from "../components/ServicesSection";
 import FooterSection  from "../components/FooterSection";
+import { SalonDetailsPage } from "./SalonDetailsPage";
 
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div className="space-y-20">
       <HeroBanner />
@@ -13,8 +14,9 @@ const Home = () => {
       <BranchesSection />
       <GallerySection />
       <FooterSection/>
+      <SalonDetailsPage/>
     </div>
   );
 }
 
-export default Home;
+export default HomePage;

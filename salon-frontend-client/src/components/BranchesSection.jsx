@@ -1,4 +1,5 @@
-import BranchCard from "./BranchCard";
+import BranchCard from "./ui/BranchCard";
+
 
 const BRANCHES = [
   {

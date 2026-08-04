@@ -1,14 +1,14 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import "./App.css";
 import { darkTheme } from "./theme/theme";
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
 
-      <Home />
+      <HomePage />
     </ThemeProvider>
   );
 }
