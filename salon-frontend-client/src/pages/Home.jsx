@@ -2,6 +2,7 @@ import HeroBanner from "../components/HeroBanner";
 import BranchesSection from "../components/BranchesSection";
 import GallerySection from "../components/GallerySection";
 import ServicesSection from "../components/ServicesSection";
+import FooterSection  from "../components/FooterSection";
 
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
       <ServicesSection />
       <BranchesSection />
       <GallerySection />
+      <FooterSection/>
     </div>
   );
 }
