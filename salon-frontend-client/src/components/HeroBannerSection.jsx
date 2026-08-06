@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Search, Sparkles } from "lucide-react";
 
-const HeroBanner = () => {
+const HeroBannerSection = () => {
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
 
@@ -74,4 +74,4 @@ const HeroBanner = () => {
   );
 }
 
-export default HeroBanner;
+export default HeroBannerSection;
