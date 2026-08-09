@@ -3,7 +3,7 @@ import "./App.css";
 import { darkTheme } from "./theme/theme";
 import BranchDetailsPage from "./pages/BranchDetailsPage";
 
-//import HomePage from "./pages/HomePage";
+// import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <CssBaseline />
 
       {/* <HomePage /> */}
-     <BranchDetailsPage />
+      <BranchDetailsPage /> 
     </ThemeProvider>
   );
 }

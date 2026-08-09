@@ -1,6 +1,6 @@
 import { Plus, Check, Clock } from "lucide-react";
 
-export const ServiceCard = ({ service, isAdded, onAddToCart }) => {
+const ServiceCard = ({ service, isAdded, onAddToCart }) => {
   return (
     <div className="p-4 rounded-2xl bg-brand-dark-paper border border-brand-dark-border flex items-center justify-between gap-4 hover:border-brand-silver-border transition-all">
       <div className="flex items-center gap-4">

@@ -1,8 +1,8 @@
-import HeroBannerSection from "../components/HeroBannerSection";
-import BranchesSection from "../components/BranchesSection";
-import GallerySection from "../components/GallerySection";
-import ServicesSection from "../components/ServicesSection";
-import FooterSection  from "../components/FooterSection";
+import HeroBannerSection from "../components/home/HeroBannerSection";
+import BranchesSection from "../components/home/BranchesSection";
+import GallerySection from "../components/home/GallerySection";
+import ServicesSection from "../components/home/ServicesSection";
+import FooterSection  from "../components/home/FooterSection";
 
 
 const HomePage = () => {

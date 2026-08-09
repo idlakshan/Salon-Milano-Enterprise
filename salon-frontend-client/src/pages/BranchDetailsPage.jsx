@@ -1,8 +1,9 @@
 import { useState } from "react";
-import BranchHeader from "../components/BranchHeader";
-import ServiceCategorySidebar from "../components/ServiceCategorySidebar";
+import BranchHeader from "../components/branch/BranchHeader";
+import ServiceCategorySidebar from "../components/branch/ServiceCategorySidebar";
+import CartSummary from "../components/branch/CartSummary";
 import ServiceCard from "../components/ui/ServiceCard";
-import CartSummary from "../components/ui/CartSummary";
+
 import {
   COLOMBO_BRANCH,
   SERVICE_CATEGORIES,
@@ -31,7 +32,7 @@ const BranchDetailsPage = () => {
   );
 
   return (
-    <div className="bg-brand-dark-bg text-white min-h-screen pt-24 pb-16 px-4 sm:px-8 max-w-7xl mx-auto space-y-8">
+    <div className="bg-brand-dark-bg text-white min-h-screen pt-14 pb-16 sm:px-8 max-w-380 mx-auto space-y-8">
       <BranchHeader branch={COLOMBO_BRANCH} />
 
       <div className="flex border-b border-brand-dark-border gap-4 sm:gap-8 text-xs sm:text-sm font-semibold">

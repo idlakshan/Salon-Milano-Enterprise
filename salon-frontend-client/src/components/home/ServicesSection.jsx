@@ -1,4 +1,4 @@
-import ServiceFeatureItem from "./ui/ServiceFeatureItem";
+import ServiceFeatureItem from "../ui/ServiceFeatureItem";
 
 const FEATURES = [
   "Certified Senior Stylists",

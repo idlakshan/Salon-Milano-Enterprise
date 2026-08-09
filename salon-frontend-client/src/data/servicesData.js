@@ -13,6 +13,50 @@ export const COLOMBO_BRANCH = {
   ],
 };
 
+export const BRANCHES = [
+  {
+    city: "Colombo 03 (Flagship)",
+    address: "No. 42, Galle Road, Colombo 03",
+    phone: "+94 11 234 5678",
+    hours: "Mon - Sun: 9:00 AM - 8:00 PM",
+    rating: 4.9,
+    reviewsCount: "240+",
+    image:
+      "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    city: "Kandy City",
+    address: "No. 18, Peradeniya Road, Kandy",
+    phone: "+94 81 222 3456",
+    hours: "Mon - Sun: 9:00 AM - 7:30 PM",
+    rating: 4.8,
+    reviewsCount: "180+",
+    image:
+      "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    city: "Galle Fort",
+    address: "Church Street, Galle Fort",
+    phone: "+94 91 224 8900",
+    hours: "Tue - Sun: 10:00 AM - 8:00 PM",
+    rating: 4.9,
+    reviewsCount: "150+",
+    image:
+      "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    city: "Negombo Beach",
+    address: "Lewis Place, Negombo",
+    phone: "+94 31 223 4567",
+    hours: "Mon - Sun: 9:00 AM - 8:00 PM",
+    rating: 4.7,
+    reviewsCount: "110+",
+    image:
+      "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop",
+  },
+  
+];
+
 export const SERVICE_CATEGORIES = [
   { id: "haircut", name: "Hair Styling" },
   { id: "beard", name: "Beard & Grooming" },

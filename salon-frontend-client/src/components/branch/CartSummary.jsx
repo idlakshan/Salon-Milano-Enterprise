@@ -1,4 +1,5 @@
-import { ShoppingBag, Trash2 } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
+import CartItem from "../ui/CartItem";
 
 const CartSummary = ({ cartItems, onRemoveFromCart, totalPrice }) => {
   return (
@@ -20,23 +21,7 @@ const CartSummary = ({ cartItems, onRemoveFromCart, totalPrice }) => {
       ) : (
         <div className="space-y-3 max-h-60 overflow-y-auto pr-1">
           {cartItems.map((item) => (
-            <div
-              key={item.id}
-              className="flex items-center justify-between text-xs bg-brand-dark-bg p-3 rounded-xl border border-brand-dark-border"
-            >
-              <div>
-                <p className="font-semibold text-white">{item.name}</p>
-                <p className="text-brand-silver text-[11px]">
-                  LKR {item.price.toLocaleString()}
-                </p>
-              </div>
-              <button
-                onClick={() => onRemoveFromCart(item.id)}
-                className="text-brand-silver hover:text-brand-red-light transition-colors p-1 cursor-pointer"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
-            </div>
+            <CartItem key={item.id} item={item} onRemove={onRemoveFromCart} />
           ))}
         </div>
       )}
