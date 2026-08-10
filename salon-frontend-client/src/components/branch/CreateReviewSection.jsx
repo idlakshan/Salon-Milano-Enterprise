@@ -1,24 +1,56 @@
-import { useState } from "react";
+import { Controller, useForm, useWatch } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Send, Loader2 } from "lucide-react";
 import StarRatingInput from "../ui/StarRatingInput";
-import { Send } from "lucide-react";
+
+const reviewSchema = z.object({
+  rating: z
+    .number()
+    .min(1, "Please select at least 1 star")
+    .max(5, "Rating cannot exceed 5 stars"),
+
+  comment: z
+    .string()
+    .trim()
+    .min(5, "Comment must be at least 5 characters long")
+    .max(500, "Comment is too long (max 500 characters)"),
+});
 
 const CreateReviewSection = ({ onSubmitReview }) => {
-  const [rating, setRating] = useState(5);
-  const [comment, setComment] = useState("");
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(reviewSchema),
+    defaultValues: {
+      rating: 5,
+      comment: "",
+    },
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!comment.trim()) return;
+  const selectedRating = useWatch({
+    control,
+    name: "rating",
+    defaultValue: 5,
+  });
 
-    if (onSubmitReview) {
-      onSubmitReview({
-        rating,
-        comment: comment.trim(),
-      });
+  // create Review submission handler
+  const onSubmit = async (values) => {
+    try {
+      if (onSubmitReview) {
+        await onSubmitReview({
+          rating: values.rating,
+          comment: values.comment.trim(),
+        });
+      }
+      reset();
+    } catch (error) {
+      console.error("Failed to submit review:", error);
     }
-
-    setComment("");
-    setRating(5);
   };
 
   return (
@@ -30,38 +62,74 @@ const CreateReviewSection = ({ onSubmitReview }) => {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div className="space-y-2">
           <label className="text-xs font-bold text-brand-silver uppercase tracking-wider block">
             Your Rating
           </label>
+
           <div className="flex items-center gap-3">
-            <StarRatingInput rating={rating} onRatingChange={setRating} />
+            <Controller
+              name="rating"
+              control={control}
+              render={({ field }) => (
+                <StarRatingInput
+                  rating={field.value}
+                  onRatingChange={field.onChange}
+                />
+              )}
+            />
+
             <span className="text-xs font-semibold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-lg">
-              {rating} / 5 Stars
+              {selectedRating} / 5 Stars
             </span>
           </div>
+
+          {errors.rating && (
+            <p className="text-xs text-red-500 font-medium">
+              {errors.rating.message}
+            </p>
+          )}
         </div>
 
         <div className="space-y-2">
           <label className="text-xs font-bold text-brand-silver uppercase tracking-wider block">
             Your Experience
           </label>
+
           <textarea
+            {...register("comment")}
             rows={4}
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
             placeholder="Tell us about the services, staff, and overall experience..."
-            className="w-full bg-brand-dark-bg border border-brand-dark-border rounded-xl p-3.5 text-xs sm:text-sm text-white placeholder-brand-silver/50 focus:outline-none focus:border-brand-red-light transition-colors resize-none"
-            required
+            className={`w-full bg-brand-dark-bg border rounded-xl p-3.5 text-xs sm:text-sm text-white placeholder-brand-silver/50 focus:outline-none transition-colors resize-none ${
+              errors.comment
+                ? "border-red-500/80 focus:border-red-500"
+                : "border-brand-dark-border focus:border-brand-red-light"
+            }`}
           />
+
+          {errors.comment && (
+            <p className="text-xs text-red-500 font-medium">
+              {errors.comment.message}
+            </p>
+          )}
         </div>
 
         <button
           type="submit"
-          className="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-red hover:bg-brand-red-hover text-white text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+          disabled={isSubmitting}
+          className="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-red hover:bg-brand-red-hover disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
         >
-          <Send className="w-3.5 h-3.5" /> Submit Review
+          {isSubmitting ? (
+            <>
+              <Loader2 className="w-3.5 h-3.5 animate-spin" /> Submitting...
+            </>
+          ) : (
+            <>
+              {" "}
+              <Send className="w-3.5 h-3.5" /> Submit Review
+            </>
+          )}
         </button>
       </form>
     </div>
