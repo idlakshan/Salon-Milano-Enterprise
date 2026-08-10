@@ -114,3 +114,31 @@ export const SERVICES_DATA = [
     image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=400&auto=format&fit=crop",
   },
 ];
+
+
+export const REVIEWS_DATA = [
+  {
+    id: "r1",
+    userName: "Kasun Perera",
+    userAvatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=150&auto=format&fit=crop",
+    rating: 5,
+    date: "2026-03-15 • 02:30 PM",
+    comment: "Excellent service! The haircut and beard trim were top-notch. Very professional staff and great ambiance.",
+  },
+  {
+    id: "r2",
+    userName: "Nimali Fernando",
+    userAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop",
+    rating: 4,
+    date: "2026-03-10 • 11:15 AM",
+    comment: "Had a great facial treatment here. Staff is friendly and the environment is very relaxing.",
+  },
+  {
+    id: "r3",
+    userName: "Sahan Jayasinghe",
+    userAvatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=150&auto=format&fit=crop",
+    rating: 5,
+    date: "2026-03-02 • 05:45 PM",
+    comment: "Best salon in Colombo 03! Cleanliness and customer care are exceptional.",
+  },
+];

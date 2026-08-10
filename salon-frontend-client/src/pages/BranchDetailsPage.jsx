@@ -6,9 +6,11 @@ import ServiceCard from "../components/ui/ServiceCard";
 
 import {
   COLOMBO_BRANCH,
+  REVIEWS_DATA,
   SERVICE_CATEGORIES,
   SERVICES_DATA,
 } from "../data/servicesData";
+import ReviewsSection from "../components/branch/ReviewsSection";
 
 const BranchDetailsPage = () => {
   const [activeTab, setActiveTab] = useState("Services");
@@ -51,7 +53,7 @@ const BranchDetailsPage = () => {
         ))}
       </div>
 
-      {activeTab === "Services" ? (
+      {activeTab === "Services" && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           <ServiceCategorySidebar
             categories={SERVICE_CATEGORIES}
@@ -76,11 +78,19 @@ const BranchDetailsPage = () => {
             totalPrice={totalPrice}
           />
         </div>
-      ) : (
+      )}
+
+      {activeTab === "Reviews" && (
+        <ReviewsSection
+          reviews={REVIEWS_DATA}
+          rating={COLOMBO_BRANCH.rating}
+          totalReviews={COLOMBO_BRANCH.totalReviews}
+        />
+      )}
+
+      {activeTab === "Create Review" && (
         <div className="p-8 rounded-2xl bg-brand-dark-paper border border-brand-dark-border min-h-50">
-          <h2 className="text-xl font-bold text-white">
-            {activeTab} Section Content
-          </h2>
+          <h2 className="text-xl font-bold text-white">Create Review Form</h2>
         </div>
       )}
     </div>
