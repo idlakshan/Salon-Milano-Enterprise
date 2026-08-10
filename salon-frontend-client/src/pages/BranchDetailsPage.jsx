@@ -11,11 +11,13 @@ import {
   SERVICES_DATA,
 } from "../data/servicesData";
 import ReviewsSection from "../components/branch/ReviewsSection";
+import CreateReviewSection from "../components/branch/CreateReviewSection";
 
 const BranchDetailsPage = () => {
   const [activeTab, setActiveTab] = useState("Services");
   const [selectedCategory, setSelectedCategory] = useState("haircut");
   const [cartItems, setCartItems] = useState([]);
+  const [reviews, setReviews] = useState(REVIEWS_DATA);
 
   const addToCart = (service) => {
     if (!cartItems.find((item) => item.id === service.id)) {
@@ -32,6 +34,11 @@ const BranchDetailsPage = () => {
   const filteredServices = SERVICES_DATA.filter(
     (item) => item.category === selectedCategory,
   );
+
+  const handleAddReview = (newReview) => {
+    setReviews([newReview, ...reviews]);
+    setActiveTab("Reviews");
+  };
 
   return (
     <div className="bg-brand-dark-bg text-white min-h-screen pt-14 pb-16 sm:px-8 max-w-380 mx-auto space-y-8">
@@ -89,9 +96,7 @@ const BranchDetailsPage = () => {
       )}
 
       {activeTab === "Create Review" && (
-        <div className="p-8 rounded-2xl bg-brand-dark-paper border border-brand-dark-border min-h-50">
-          <h2 className="text-xl font-bold text-white">Create Review Form</h2>
-        </div>
+        <CreateReviewSection onSubmitReview={handleAddReview} />
       )}
     </div>
   );
