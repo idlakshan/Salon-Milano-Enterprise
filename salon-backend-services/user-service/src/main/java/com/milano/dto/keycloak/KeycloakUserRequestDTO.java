@@ -1,6 +1,5 @@
-package com.milano.dto.request;
+package com.milano.dto.keycloak;
 
-import com.milano.dto.CredentialDTO;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 @ToString
 @Builder
 
-public class UserRegistrationRequestDTO {
+public class KeycloakUserRequestDTO {
     private String username;
     private boolean enabled;
     private boolean emailVerified;

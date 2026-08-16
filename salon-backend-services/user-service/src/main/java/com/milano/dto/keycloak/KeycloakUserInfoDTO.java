@@ -1,4 +1,4 @@
-package com.milano.dto;
+package com.milano.dto.keycloak;
 
 import lombok.*;
 

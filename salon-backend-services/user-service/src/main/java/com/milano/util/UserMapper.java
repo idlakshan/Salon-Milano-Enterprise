@@ -1,11 +1,11 @@
 package com.milano.util;
 
-import com.milano.dto.CredentialDTO;
+import com.milano.dto.keycloak.CredentialDTO;
 import com.milano.dto.request.SignupRequestDTO;
-import com.milano.dto.request.UserRegistrationRequestDTO;
+import com.milano.dto.keycloak.KeycloakUserRequestDTO;
 import com.milano.dto.request.UserRequestDTO;
 import com.milano.dto.response.AuthResponseDTO;
-import com.milano.dto.response.TokenResponseDTO;
+import com.milano.dto.keycloak.TokenResponseDTO;
 import com.milano.dto.response.UserResponseDTO;
 import com.milano.entity.ROLE_TYPES;
 import com.milano.entity.User;
@@ -49,14 +49,14 @@ public class UserMapper {
     }
 
     // SignupRequestDTO -> Keycloak UserRegistrationRequestDTO
-    public UserRegistrationRequestDTO toKeycloakUserRequest(SignupRequestDTO req) {
+    public KeycloakUserRequestDTO toKeycloakUserRequest(SignupRequestDTO req) {
         CredentialDTO credentialDTO = CredentialDTO.builder()
                 .type("password")
                 .value(req.getPassword())
                 .temporary(false)
                 .build();
 
-        return UserRegistrationRequestDTO.builder()
+        return KeycloakUserRequestDTO.builder()
                 .username(req.getUsername())
                 .email(req.getEmail())
                 .firstName(req.getFirstName())

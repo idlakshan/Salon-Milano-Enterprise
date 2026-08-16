@@ -1,21 +1,18 @@
 package com.milano.service.impl;
 
-import com.milano.dto.KeycloakUserInfoDTO;
+import com.milano.dto.keycloak.KeycloakUserInfoDTO;
 import com.milano.dto.request.UserRequestDTO;
 import com.milano.dto.response.PagedResponseDTO;
 import com.milano.dto.response.UserResponseDTO;
 import com.milano.entity.User;
 import com.milano.exception.EntryNotFoundException;
 import com.milano.repo.UserRepo;
-import com.milano.service.KeycloakService;
 import com.milano.service.UserService;
 import com.milano.util.UserMapper;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -24,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
     private final UserMapper userMapper;
-    private final KeycloakService keycloakService;
+    private final KeycloakServiceImpl keycloakService;
 
     @Override
     public void createUser(UserRequestDTO userRequestDTO) {

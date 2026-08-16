@@ -2,13 +2,12 @@ package com.milano.service.impl;
 
 import com.milano.dto.request.SignupRequestDTO;
 import com.milano.dto.response.AuthResponseDTO;
-import com.milano.dto.response.TokenResponseDTO;
+import com.milano.dto.keycloak.TokenResponseDTO;
 import com.milano.entity.User;
 import com.milano.exception.DuplicateEntryException;
 import com.milano.exception.EntryNotFoundException;
 import com.milano.repo.UserRepo;
 import com.milano.service.AuthService;
-import com.milano.service.KeycloakService;
 import com.milano.util.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService {
 
     private final UserRepo userRepo;
-    private final KeycloakService keycloakService;
+    private final KeycloakServiceImpl keycloakService;
     private final UserMapper userMapper;
 
     @Override

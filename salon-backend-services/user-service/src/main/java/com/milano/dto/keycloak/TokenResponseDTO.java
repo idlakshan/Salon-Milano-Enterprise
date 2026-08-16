@@ -1,4 +1,4 @@
-package com.milano.dto.response;
+package com.milano.dto.keycloak;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

@@ -1,9 +1,8 @@
-package com.milano.dto.response;
+package com.milano.dto.keycloak;
 
 import lombok.*;
 
 import java.util.Map;
-import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,7 +10,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Builder
-public class KeycloakRoleResponseDTO {
+public class KeycloakUserRoleResponseDTO {
     private String id;
     private String name;
     private String description;
